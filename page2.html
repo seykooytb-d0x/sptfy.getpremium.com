@@ -7,6 +7,9 @@
   <link rel="icon" href=https://upload.wikimedia.org/wikipedia/commons/7/71/Spotify.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
+    /* ==========================================================================
+       1. STYLES PAR DÉFAUT : MOBILE (Écrans de 0px à 480px)
+       ========================================================================== */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -23,30 +26,30 @@
       justify-content: center;
       min-height: 100vh;
       text-align: center;
-      padding: 20px;
+      padding: 15px; /* Réduit pour laisser plus d'espace sur petit écran */
     }
 
     header img {
-      width: 160px;
-      margin-bottom: 30px;
+      width: 140px; /* Légèrement plus petit sur mobile pour gagner de la place */
+      margin-bottom: 25px;
     }
 
     h1 {
-      font-size: 2rem;
+      font-size: 1.8rem; /* Plus compact sur mobile */
       font-weight: 800;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
 
     form {
       background-color: #121212;
-      padding: 30px;
-      border-radius: 15px;
-      max-width: 400px;
+      padding: 20px; /* Plus d'espace utile pour les champs sur mobile */
+      border-radius: 10px;
       width: 100%;
       display: flex;
       flex-direction: column;
       gap: 15px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      /* On retire l'ombre lourde sur mobile pour épurer l'affichage */
+      box-shadow: none; 
     }
 
     label {
@@ -137,7 +140,34 @@
       font-weight: bold;
       margin-top: 10px;
     }
-  </style>
+
+    /* ==========================================================================
+       2. ADAPTATION DESKTOP / TABLETTE : Écrans plus grands (À partir de 481px)
+       ========================================================================== */
+    @media (min-width: 481px) {
+      body {
+        padding: 20px; /* Restauration du padding initial */
+      }
+
+      header img {
+        width: 160px; /* Taille d'origine */
+        margin-bottom: 30px;
+      }
+
+      h1 {
+        font-size: 2rem; /* Taille d'origine */
+        margin-bottom: 25px;
+      }
+
+      form {
+        padding: 30px; /* Restauration du confort desktop */
+        border-radius: 15px;
+        max-width: 400px; /* Le formulaire se bloque à sa taille maximale */
+        box-shadow: 0 0 20px rgba(0,0,0,0.5); /* Application de l'ombre */
+      }
+    }
+</style>
+
 </head>
 <body>
 
