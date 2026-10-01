@@ -7,6 +7,9 @@
   <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/7/71/Spotify.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
+    /* ==========================================================================
+       1. STYLES PAR DÉFAUT : MOBILE (Optimisé Samsung S10/S25, iPhone, etc.)
+       ========================================================================== */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -20,37 +23,50 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      /* Justify-content space-between pousse le footer tout en bas et centre le reste */
+      justify-content: space-between; 
       min-height: 100vh;
+      min-height: 100dvh; /* S'adapte parfaitement aux barres Android/iOS */
       text-align: center;
+      padding: 30px 20px 20px 20px; /* Conserve un espace de sécurité au sol */
+    }
+
+    /* Regroupe le logo, le titre, le texte et le bouton pour les centrer verticalement */
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 1; /* Prend tout l'espace disponible au centre */
+      width: 100%;
+      max-width: 500px;
     }
 
     header img {
-      width: 220px;
-      margin-bottom: 30px;
+      width: 180px;
+      margin-bottom: 25px;
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 2rem;
       font-weight: 800;
       margin-bottom: 20px;
     }
 
     p {
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin-bottom: 40px;
+      font-size: 1rem;
       line-height: 1.6;
+      margin-bottom: 35px;
     }
 
     .cta {
       background-color: #1DB954;
       color: #121212;
       font-weight: 600;
-      padding: 15px 40px;
+      padding: 14px 35px;
       border: none;
       border-radius: 50px;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       cursor: pointer;
       transition: all 0.3s ease;
       text-decoration: none;
@@ -62,11 +78,13 @@
       transform: scale(1.05);
     }
 
+    /* Le footer est collé au sol proprement, sans aucun position: absolute */
     footer {
-      position: absolute;
-      bottom: 20px;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #aaa;
+      width: 100%;
+      line-height: 1.4;
+      margin-top: 20px; /* Évite de coller au CTA sur les très petits écrans */
     }
 
     .demo-tag {
@@ -75,21 +93,35 @@
       margin-top: 10px;
     }
 
-    @media (max-width: 600px) {
+    /* ==========================================================================
+       2. ADAPTATION TABLETTES, IPAD & LAPTOPS (À partir de 768px)
+       ========================================================================== */
+    @media (min-width: 768px) {
+      .main-content {
+        max-width: 600px;
+      }
+
+      header img {
+        width: 220px;
+        margin-bottom: 30px;
+      }
+
       h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
       }
 
       p {
-        font-size: 1rem;
-        padding: 0 20px;
+        font-size: 1.1rem;
       }
 
       .cta {
-        padding: 12px 30px;
+        padding: 15px 40px;
+        font-size: 1.1rem;
       }
     }
-  </style>
+</style>
+
+
 </head>
 <body>
 
