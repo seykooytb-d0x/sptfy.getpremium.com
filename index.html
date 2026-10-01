@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     /* ==========================================================================
-       1. STYLES PAR DÉFAUT : MOBILE (Optimisé Samsung S10/S25, iPhone, etc.)
+       1. STYLES PAR DÉFAUT : MOBILE (Écrans de 0px à 600px)
        ========================================================================== */
     * {
       box-sizing: border-box;
@@ -23,47 +23,51 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      /* Justify-content space-between pousse le footer tout en bas et centre le reste */
+      /* space-between pousse le footer tout au sol et laisse le contenu principal au centre */
       justify-content: space-between; 
       min-height: 100vh;
       min-height: 100dvh; /* S'adapte parfaitement aux barres Android/iOS */
       text-align: center;
-      padding: 30px 20px 20px 20px; /* Conserve un espace de sécurité au sol */
+      padding: 30px 20px 20px 20px; /* Zone de confort pour éviter les collisions */
     }
 
-    /* Regroupe le logo, le titre, le texte et le bouton pour les centrer verticalement */
-    .main-content {
+    /* Le conteneur principal englobe le logo et les textes pour les centrer verticalement */
+    main {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      flex-grow: 1; /* Prend tout l'espace disponible au centre */
+      flex-grow: 1; /* Remplit l'espace central disponible */
       width: 100%;
-      max-width: 500px;
     }
 
     header img {
-      width: 180px;
+      width: 180px; /* Taille optimisée pour l'affichage mobile */
       margin-bottom: 25px;
+      display: block;
     }
 
     h1 {
       font-size: 2rem;
       font-weight: 800;
       margin-bottom: 20px;
+      line-height: 1.2;
     }
 
-    p {
+    /* Modifié en classe spécifique pour éviter de casser le p du footer */
+    .main-text {
       font-size: 1rem;
-      line-height: 1.6;
+      max-width: 600px;
       margin-bottom: 35px;
+      line-height: 1.6;
+      padding: 0 20px;
     }
 
     .cta {
       background-color: #1DB954;
       color: #121212;
       font-weight: 600;
-      padding: 14px 35px;
+      padding: 13px 32px;
       border: none;
       border-radius: 50px;
       font-size: 1.05rem;
@@ -78,31 +82,31 @@
       transform: scale(1.05);
     }
 
-    /* Le footer est collé au sol proprement, sans aucun position: absolute */
+    /* FIX GLOBAL : Le footer est fixé au sol de manière fluide sans absolute */
     footer {
+      width: 100%;
+      margin-top: 25px; /* Marge de sécurité minimale */
+    }
+
+    .footer-text {
       font-size: 0.85rem;
       color: #aaa;
-      width: 100%;
       line-height: 1.4;
-      margin-top: 20px; /* Évite de coller au CTA sur les très petits écrans */
     }
 
     .demo-tag {
       color: #1DB954;
       font-weight: bold;
-      margin-top: 10px;
+      margin-top: 8px;
+      font-size: 1.5rem;
     }
 
     /* ==========================================================================
-       2. ADAPTATION TABLETTES, IPAD & LAPTOPS (À partir de 768px)
+       2. ADAPTATION DESKTOP : Écrans plus grands (À partir de 601px)
        ========================================================================== */
-    @media (min-width: 768px) {
-      .main-content {
-        max-width: 600px;
-      }
-
+    @media (min-width: 601px) {
       header img {
-        width: 220px;
+        width: 220px; /* Retour à la taille desktop d'origine */
         margin-bottom: 30px;
       }
 
@@ -110,8 +114,9 @@
         font-size: 2.5rem;
       }
 
-      p {
+      .main-text {
         font-size: 1.1rem;
+        padding: 0;
       }
 
       .cta {
@@ -120,27 +125,27 @@
       }
     }
 </style>
-
-
 </head>
 <body>
 
-  <header>
-    <a href="https://www.spotify.com">
-  <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Spotify_logo_with_text.svg/3840px-Spotify_logo_with_text.svg.png?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=thumbnail" alt="LOGO">
-</a>
-  </header>
-
+  <!-- Contenu centralisé (Le logo, le titre et le CTA font bloc) -->
   <main>
+    <header>
+      <a href="https://www.spotify.com">
+        <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Spotify_logo_with_text.svg/3840px-Spotify_logo_with_text.svg.png?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=thumbnail" alt="LOGO">
+      </a>
+    </header>
+
     <h1>6 mois de Spotify Premium offerts</h1>
-    <p>Profitez de la musique sans interruption, sans pub, en illimité, même hors ligne.  
+    <p class="main-text">Profitez de la musique sans interruption, sans pub, en illimité, même hors ligne.  
        Découvrez Spotify Premium gratuitement pendant 6 mois, sans engagement.</p>
 
     <a href="page2.html" class="cta">Essayer gratuitement</a>
   </main>
 
+  <!-- Bloc du bas : Fixé de façon fluide au sol sur mobile et PC sans superposition -->
   <footer>
-    <p>Offre réservée aux nouveaux utilisateurs Premium. Conditions générales applicables.</p>
+    <p class="footer-text">Offre réservée aux nouveaux utilisateurs Premium. Conditions générales applicables.</p>
     <p class="demo-tag">PROJET CHEF D'ŒUVRE - BUT PÉDAGOGIQUE UNIQUEMENT</p>
   </footer>
 
